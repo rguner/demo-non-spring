@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
  * Hello world!
  *
  */
-public class App {
+public class LogWithExceptionTraceApp {
 
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogWithExceptionTraceApp.class);
 
 
     public static void main(String[] args) {
