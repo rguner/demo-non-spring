@@ -61,9 +61,9 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
                 os.write(out);
             }
 
-            Thread.sleep(5000);
+            //Thread.sleep(5000);
 
-            //getResponseWithReadCharAndCloseConnectionDuringRead(http);
+            getResponseWithReadCharAndCloseConnectionDuringRead(http);
             //getResponseWithReadChar(http);
             //getResponseWithReadLine(http);
 
@@ -87,8 +87,7 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
             //reader.close();
             break;
         }
-        String getResponseString = "";
-        getResponseString = sb.toString();
+        String getResponseString = sb.toString();
 
         System.out.println(getResponseString);
     }
@@ -104,8 +103,7 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
             //System.out.println(" readChar : " + ch);
             sb.append(ch);
         }
-        String getResponseString = "";
-        getResponseString = sb.toString();
+        String getResponseString = sb.toString();
 
         System.out.println(getResponseString);
     }
@@ -119,8 +117,7 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
             System.out.println(" line : " + line);
             sb.append(line);
         }
-        String getResponseString = "";
-        getResponseString = sb.toString();
+        String getResponseString = sb.toString();
 
         System.out.println(getResponseString);
     }
