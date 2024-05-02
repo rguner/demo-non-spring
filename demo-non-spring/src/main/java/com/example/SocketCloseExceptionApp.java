@@ -1,5 +1,6 @@
 package com.example;
 
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 import java.io.IOException;
@@ -14,11 +15,15 @@ public class SocketCloseExceptionApp {
             // Connect to the server
             socket.connect(new InetSocketAddress("localhost", 8080));
 
+            PrintWriter pw = new PrintWriter(socket.getOutputStream());
+            pw.print("POST /api/validate HTTP/1.1\\n\\r\\n");
+            pw.print("Host: localhost\\n\\r\\n");
+            pw.flush();
             // Immediately close the socket
             socket.close();
 
             // Try to perform an operation on the closed socket
-            socket.getInputStream();
+            // socket.getInputStream(); // client side socket close exception.
 
         } catch (SocketException e) {
             // This will catch the "Socket closed" exception
