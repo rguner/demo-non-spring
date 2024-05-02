@@ -65,15 +65,31 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
 
             // Do something with http.getInputStream(),
             // to simulate client abort exception commented out the below line
-            //getResponse(http);
+            getResponseWithReadChar(http);
+            //getResponseWithReadLine(http);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    private static void getResponse(HttpURLConnection http) throws IOException {
+    private static void getResponseWithReadChar(HttpURLConnection http) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(http.getInputStream()));
+
+        StringBuilder sb = new StringBuilder();
+        int charInt;
+        while ((charInt = reader.read()) != -1) {
+            char ch = (char) charInt;
+            //System.out.println(" readChar : " + ch);
+            sb.append(ch);
+        }
+        String getResponseString = "";
+        getResponseString = sb.toString();
+
+        System.out.println(getResponseString);
+    }
+
+    private static void getResponseWithReadLine(HttpURLConnection http) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(http.getInputStream()));
 
         StringBuilder sb = new StringBuilder();
