@@ -34,7 +34,31 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
             http.setRequestMethod("POST"); // PUT is another valid option
             http.setDoOutput(true);
 
-            byte[] out = getBytes();
+            String json = """
+                    {
+                        "clientId": 1234,
+                        "routeId" : 4567,
+                        "clientConnectionId" :7889,
+                        "connectionType": "HTTP",
+                        "source": {
+                            "ton": 90,
+                            "npi": 91,
+                            "address": "address value"
+                        },
+                        "destinations": [
+                            {
+                                "messageId": 4321,
+                                "destination": {
+                                "ton": 90,
+                                "npi": 91,
+                                "address": "address value"
+                                }
+                            }
+                        ]
+                    }
+            """;
+
+            byte[] out = json.getBytes(StandardCharsets.UTF_8);
             int length = out.length;
 
             http.setFixedLengthStreamingMode(length);
@@ -52,35 +76,6 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static byte[] getBytes() {
-        String json = """
-                {
-                    "clientId": 1234,
-                    "routeId" : 4567,
-                    "clientConnectionId" :7889,
-                    "connectionType": "HTTP",
-                    "source": {
-                        "ton": 90,
-                        "npi": 91,
-                        "address": "address value"
-                    },
-                    "destinations": [
-                        {
-                            "messageId": 4321,
-                            "destination": {
-                            "ton": 90,
-                            "npi": 91,
-                            "address": "address value"
-                            }
-                        }
-                    ]
-                }
-        """;
-
-        byte[] out = json.getBytes(StandardCharsets.UTF_8);
-        return out;
     }
 
     private static void getResponseWithReadCharAndCloseConnectionDuringRead(HttpURLConnection http) throws IOException {
