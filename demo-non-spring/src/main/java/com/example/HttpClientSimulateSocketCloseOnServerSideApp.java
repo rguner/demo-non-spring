@@ -9,12 +9,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.IntStream;
 
 public class HttpClientSimulateSocketCloseOnServerSideApp {
 
     public static void main(String[] args) {
         HttpClientSimulateSocketCloseOnServerSideApp httpClientSimulateSocketCloseOnServerSideApp = new HttpClientSimulateSocketCloseOnServerSideApp();
-        httpClientSimulateSocketCloseOnServerSideApp.callHttpPost();
+        httpClientSimulateSocketCloseOnServerSideApp.callHttpPostCaller();
+    }
+
+    private void callHttpPostCaller() {
+        IntStream.range(0,1000).forEach(i -> {
+            callHttpPost();
+        });
     }
 
     private void callHttpPost() {
@@ -61,11 +68,10 @@ public class HttpClientSimulateSocketCloseOnServerSideApp {
                 os.write(out);
             }
 
-            //Thread.sleep(5000);
-
-            getResponseWithReadCharAndCloseConnectionDuringRead(http);
+            //getResponseWithReadCharAndCloseConnectionDuringRead(http);
             //getResponseWithReadChar(http);
             //getResponseWithReadLine(http);
+
 
         } catch (Exception e) {
             e.printStackTrace();
