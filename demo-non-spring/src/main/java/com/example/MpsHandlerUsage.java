@@ -15,7 +15,7 @@ public class MpsHandlerUsage {
 
     private void callMpsHandler() {
         MpsHandler handler = new MpsHandler();
-        int numberOfThreads = 10; // Number of threads to create
+        int numberOfThreads = 100; // Number of threads to create
         int mps = 50; // Example MPS value
         String supplier = "SupplierA"; // Example supplier name
 
